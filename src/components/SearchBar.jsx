@@ -5,9 +5,9 @@ const SearchBar = ({
 }) => {
     return (
         <>
-            <div className='flex item-center justify-center mt-8'>
+            <div className='mx-auto mt-8 flex w-full max-w-3xl items-center justify-center px-4'>
                 <input 
-                    className='p-4 border w-2xl focus:outline-none' 
+                    className='w-full border p-4 focus:outline-none' 
                     type='text' 
                     placeholder='Search User (e.g., octocat)' 
                     value={searchTerm}          

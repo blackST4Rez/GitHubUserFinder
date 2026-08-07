@@ -428,9 +428,8 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className='min-h-screen bg-gray-50 px-4 py-6 sm:px-6 lg:px-8'>
       <Heading />
-      
 
       <SearchBar 
         searchTerm={searchTerm}
@@ -438,8 +437,8 @@ const App = () => {
         handleKeyDown={handleKeyDown}
       />
       
-      <div className='min-w-2xs h-full mt-10 ml-65 mr-65 mb-40'>
-        <div className='border p-15'>
+      <div className='mx-auto mt-8 w-full max-w-6xl'>
+        <div className='border p-30 sm:p-6 lg:p-10'>
           <Profile user={selectedUser} />
           <Socials user={selectedUser} />
           <LatestRepo />

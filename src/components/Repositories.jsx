@@ -7,32 +7,32 @@ const Repositories = ({
 }) => {
 
     return (
-        <div className="grid grid-cols-2 gap-5 mt-6 mb-5">
+        <div className="mt-6 mb-5 grid grid-cols-1 gap-5 lg:grid-cols-2">
             {repos.map(repo => (
-                <div key={repo.id} className="w-full flex flex-col border p-5">
-                    <div className="flex gap-1 items-center justify-start text-2xl">
-                        <BiGitBranch size={35} className="text-red-600" />
-                        <h5 className="font-bold text-4xl">{repo.name}</h5>
+                <div key={repo.id} className="flex w-full flex-col border p-4 sm:p-5">
+                    <div className="flex items-center justify-start gap-1 text-xl sm:text-2xl">
+                        <BiGitBranch size={30} className="text-red-600 sm:size-8.75" />
+                        <h5 className="text-2xl font-bold sm:text-3xl lg:text-4xl">{repo.name}</h5>
                     </div>
-                    <div className="items-center justify-start flex-wrap mt-4">
-                        <h5 className="font-light text-2xl">{repo.description}</h5>
+                    <div className="mt-4 flex-wrap items-center justify-start">
+                        <h5 className="text-base font-light sm:text-lg lg:text-2xl">{repo.description}</h5>
                     </div>
-                    <div className="flex items-center justify-start mt-4 gap-4">
+                    <div className="mt-4 flex flex-wrap items-center justify-start gap-3 sm:gap-4">
                         <div className="flex items-center gap-1">
-                            <LucideActivity size={20} className="text-red-600" />
-                            <h5 className="font-light text-xl">{repo.language}</h5>
+                            <LucideActivity size={18} className="text-red-600 sm:size-5" />
+                            <h5 className="text-sm font-light sm:text-base lg:text-xl">{repo.language}</h5>
                         </div>
                         <div className="flex items-center gap-1">
-                            <BiStar size={20} className="transition-all animate-spin" />
-                            <h5 className="font-light text-xl">{repo.stargazers_count}</h5>
+                            <BiStar size={18} className="animate-spin transition-all sm:size-5" />
+                            <h5 className="text-sm font-light sm:text-base lg:text-xl">{repo.stargazers_count}</h5>
                         </div>
                         <div className="flex items-center gap-1">
-                            <BiGitRepoForked size={20} className="text-red-600" />
-                            <h5 className="font-light text-xl">{repo.forks_count}</h5>
+                            <BiGitRepoForked size={18} className="text-red-600 sm:size-5" />
+                            <h5 className="text-sm font-light sm:text-base lg:text-xl">{repo.forks_count}</h5>
                         </div>
                         <div className="flex items-center gap-1">
-                            <LiaClock size={25} />
-                            <h5 className="font-light text-xl">{repo.updated_at}</h5>
+                            <LiaClock size={20} className="sm:size-6" />
+                            <h5 className="text-sm font-light sm:text-base lg:text-xl">{repo.updated_at}</h5>
                         </div>
                     </div>
                 </div>
