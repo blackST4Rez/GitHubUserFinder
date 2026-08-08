@@ -401,7 +401,7 @@ const App = () => {
 
   function handleKeyDown(e) {
     if (e.key === 'Enter') { 
-      performSearch()
+      performSearch()         
     }
   }
 
@@ -420,7 +420,7 @@ const App = () => {
 
 
     if (foundUser) {
-      setSelectedUser(foundUser) 
+      setSelectedUser(foundUser)
       setSearchTerm('')
       console.log(`Found user: ${foundUser.login} (ID: ${foundUser.id})`)
     } else {
