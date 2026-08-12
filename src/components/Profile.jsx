@@ -31,7 +31,7 @@ const Profile = ({ user }) => {
                 </div>
 
                 <div className="flex flex-col items-center sm:items-start gap-1 sm:gap-2 text-center sm:text-left w-full">
-                    <h4 className="text-2xl font-bold sm:text-3xl lg:text-4xl">{user.login.toUpperCase()}</h4>
+                    <h4 className="text-2xl font-bold sm:text-3xl lg:text-4xl">{user.login}</h4>
                     <h4 className="text-lg sm:text-xl lg:text-2xl">@{user.login}</h4>
                     <p className="mt-2 sm:mt-3 text-lg font-extralight sm:text-xl lg:text-3xl">{noBio()}</p>
 
