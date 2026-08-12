@@ -12,7 +12,7 @@ const Repositories = ({
                 <div key={repo.id} className="flex w-full flex-col border p-4 sm:p-5">
                     <div className="flex items-center gap-2">
                         <BiGitBranch size={24} className="text-red-600 sm:size-8.75 shrink-0" />
-                        <h5 className="text-xl sm:text-2xl lg:text-3xl font-bold truncate">{repo.name}</h5>
+                        <h5 className="text-xl sm:text-2xl lg:text-3xl font-bold wrap">{repo.name}</h5>
                     </div>
                     <div className="mt-3 sm:mt-4">
                         <h5 className="text-sm sm:text-base lg:text-xl font-light wrap-break-words">{repo.description || "No description"}</h5>

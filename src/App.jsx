@@ -15,62 +15,83 @@ const App = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  function handleChange(e) {
-    setSearchTerm(e.target.value)
-  }
-
-  function handleKeyDown(e) {
-    if (e.key === 'Enter') {
-      performSearch()
+/* Function to take default & type input as a param for the API request */
+  const fetchUserData = async (username) => {
+    if (!username.trim()) {
+      setError('Please enter a username')
+      return
     }
-  }
 
-  async function fetchGithubUser(username, clearSearch = true) {
     setLoading(true)
     setError('')
+    setSelectedUser(null)
+    setRepos([])
 
     try {
+      /* Fetch the user profile only */
       const userResponse = await fetch(`https://api.github.com/users/${username}`)
+      
       if (!userResponse.ok) {
         if (userResponse.status === 404) {
-          throw new Error(`No GitHub user found for "${username}".`)
+          throw new Error('User not found')
         }
-        throw new Error(`GitHub API error: ${userResponse.status}`)
+        throw new Error('Failed to fetch user data')
       }
-
+      
       const userData = await userResponse.json()
-      const reposResponse = await fetch(
-        `https://api.github.com/users/${username}/repos?sort=updated&per_page=10`
-      )
-      const repoData = reposResponse.ok ? await reposResponse.json() : []
-
+      console.log('User data:', userData)
       setSelectedUser(userData)
-      setRepos(repoData)
-      if (clearSearch) {
-        setSearchTerm('')
+
+      /* Fetch the repositories only of the user that one searched for */
+      const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`)
+      
+      if (!reposResponse.ok) {
+        throw new Error('Failed to fetch repositories')
       }
+      
+      const reposData = await reposResponse.json()
+      console.log('Repositories:', reposData)
+      setRepos(reposData)
+
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Search failed. Please try again.')
+      console.error('Error:', err)
+      setError(err.message || 'An error occurred while fetching data')
       setSelectedUser(null)
       setRepos([])
+
     } finally {
       setLoading(false)
     }
   }
 
-  async function performSearch() {
-    const username = searchTerm.trim()
-    if (!username) {
-      setError('Please enter a GitHub username.')
-      return
+ /* Fetch the default user data (mine own) as soon as the browser loads for the first time */
+  useEffect(() => {
+    if (defaultUsername) {
+      fetchUserData(defaultUsername)
     }
+  }, [])
 
-    await fetchGithubUser(username)
+  /* Handle change in the input value typed and change the state */
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value)
   }
 
-  useEffect(() => {
-    fetchGithubUser(defaultUsername, false)
-  }, [])
+  /* Handle keydown Events for precise search */
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      performSearch()
+    }
+  }
+
+  /* Perform Search for Username and send the request to API */
+  const performSearch = () => {
+    if (searchTerm.trim()) {
+      fetchUserData(searchTerm.trim())
+    } else {
+      setError('Please enter a username')
+    }
+  }
+
 
   return (
     <div className='min-h-screen bg-gray-50 px-4 py-4 sm:px-6 lg:px-8'>
