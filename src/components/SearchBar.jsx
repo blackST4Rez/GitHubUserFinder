@@ -13,7 +13,7 @@ const SearchBar = ({
                     <input
                         className='w-full border border-gray-900 py-3 sm:py-4 pl-3 sm:pl-4 pr-12 sm:pr-14 lg:pr-16 focus:border-black focus:outline-none text-sm sm:text-base'
                         type='text'
-                        placeholder='Search User (e.g., octocat)'
+                        placeholder='Search any User'
                         value={searchTerm}
                         onChange={handleChange}
                         onKeyDown={handleKeyDown}
